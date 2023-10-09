@@ -16,5 +16,5 @@ COPY . .
 RUN cargo build --release
 
 FROM rust:1.73-slim AS template-rust
-COPY --from=builder /app/target/release/stackoverflow-survey-stack /usr/local/bin
-ENTRYPOINT ["/usr/local/bin/stackoverflow-survey-stack"]
+COPY --from=builder /app/target/release/most-loved-crud-app /usr/local/bin
+ENTRYPOINT ["/usr/local/bin/most-loved-crud-app"]
