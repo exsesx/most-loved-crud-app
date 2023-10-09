@@ -1,36 +1,7 @@
+use crate::models::{CreateQuote, Quote};
 use axum::{extract, http};
-use serde::{Deserialize, Serialize};
-use sqlx::{FromRow, PgPool};
+use sqlx::PgPool;
 use uuid::Uuid;
-
-#[derive(Serialize, FromRow)]
-pub struct Quote {
-    id: Uuid,
-    book: String,
-    quote: String,
-    created_at: chrono::DateTime<chrono::Utc>,
-    updated_at: chrono::DateTime<chrono::Utc>,
-}
-
-impl Quote {
-    fn new(book: String, quote: String) -> Self {
-        let now = chrono::Utc::now();
-
-        Self {
-            id: Uuid::new_v4(),
-            book,
-            quote,
-            created_at: now,
-            updated_at: now,
-        }
-    }
-}
-
-#[derive(Debug, Deserialize)]
-pub struct CreateQuote {
-    book: String,
-    quote: String,
-}
 
 pub async fn health() -> http::StatusCode {
     http::StatusCode::OK
@@ -112,7 +83,7 @@ pub async fn delete_quote(
 ) -> http::StatusCode {
     let res = sqlx::query(
         r#"
-    DELETE FROM quotes WHERE id = $4
+    DELETE FROM quotes WHERE id = $1
         "#,
     )
     .bind(id)

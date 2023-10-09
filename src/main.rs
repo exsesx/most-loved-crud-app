@@ -3,6 +3,7 @@ use sqlx::postgres::PgPoolOptions;
 use std::env;
 
 mod handlers;
+mod models;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
