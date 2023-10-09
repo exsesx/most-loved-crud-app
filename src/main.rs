@@ -1,8 +1,8 @@
-mod handlers;
-
 use axum::routing::{delete, get, post, put, Router};
 use sqlx::postgres::PgPoolOptions;
 use std::env;
+
+mod handlers;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {

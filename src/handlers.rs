@@ -1,7 +1,5 @@
 use axum::{extract, http};
 use serde::{Deserialize, Serialize};
-use std::os::macos::raw::stat;
-
 use sqlx::{FromRow, PgPool};
 use uuid::Uuid;
 
